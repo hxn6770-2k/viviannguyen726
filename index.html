@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vivian Nguyen — Program Manager | AI & NeuroTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f3f0;
+    --white: #ffffff;
+    --border: #ddd8d0;
+    --muted: #9e9488;
+    --mid: #5e5650;
+    --ink: #18150f;
+
+    --navy: #0f2d52;
+    --navy-mid: #2255a0;
+    --navy-light: #dce8f8;
+    --navy-btn: #1a3f75;
+
+    --sage: #1d5244;
+    --sage-light: #d6ede7;
+
+    --warm: #7a3518;
+    --warm-light: #fce8dc;
+
+    --gold: #b06a00;
+    --gold-light: #fdf0d9;
+
+    --radius-sm: 10px;
+    --radius: 16px;
+    --radius-lg: 24px;
+    --shadow: 0 2px 18px rgba(15,12,8,0.09);
+    --shadow-hover: 0 10px 36px rgba(15,12,8,0.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; font-weight:300; -webkit-font-smoothing:antialiased; }
+
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:1rem; left:50%; transform:translateX(-50%);
+    z-index:100; width:calc(100% - 4rem); max-width:1100px;
+    background:rgba(255,255,255,0.94); backdrop-filter:blur(14px);
+    border:1px solid var(--border); border-radius:var(--radius);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:0.9rem 1.8rem; box-shadow:var(--shadow);
+  }
+  .nav-logo { font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--ink); text-decoration:none; }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { font-size:0.75rem; font-weight:500; color:var(--mid); text-decoration:none; letter-spacing:0.06em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--navy); }
+
+  /* ── HERO ── */
+  .hero-wrap {
+    max-width:1100px; margin:0 auto; padding:130px 2rem 80px;
+    display:grid; grid-template-columns:1fr 295px; gap:3.5rem; align-items:start;
+    opacity:0; animation:fadeUp 0.8s 0.1s forwards;
+  }
+  .hero-pill {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:var(--navy); color:#fff;
+    border-radius:100px; padding:0.38rem 1.1rem;
+    font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+    margin-bottom:1.6rem;
+  }
+  .hero-pill::before { content:''; width:6px; height:6px; background:rgba(255,255,255,0.7); border-radius:50%; }
+  h1 { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,5.5vw,5rem); font-weight:400; line-height:1.08; letter-spacing:-0.01em; margin-bottom:1.3rem; color:var(--ink); }
+  h1 em { font-style:italic; color:var(--navy-mid); }
+  .hero-sub { font-size:0.96rem; color:var(--mid); line-height:1.88; max-width:490px; margin-bottom:2.2rem; }
+  .hero-sub strong { color:var(--ink); font-weight:600; }
+  .hero-btns { display:flex; gap:0.75rem; flex-wrap:wrap; }
+  .btn { padding:0.78rem 1.8rem; font-size:0.8rem; font-weight:600; letter-spacing:0.04em; text-decoration:none; border-radius:var(--radius-sm); transition:all 0.2s; display:inline-block; }
+  .btn-dark { background:var(--navy); color:#fff; box-shadow:0 4px 16px rgba(10,37,80,0.28); }
+  .btn-dark:hover { background:var(--navy-btn); transform:translateY(-2px); box-shadow:0 8px 24px rgba(10,37,80,0.35); }
+  .btn-ghost { background:var(--white); color:var(--ink); border:1.5px solid var(--border); }
+  .btn-ghost:hover { border-color:var(--navy-mid); color:var(--navy); }
+
+  /* hero card */
+  .hero-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.7rem; box-shadow:var(--shadow); margin-top:1rem; }
+  .hero-card-title { font-size:0.63rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:1.2rem; }
+  .stat-row { display:flex; justify-content:space-between; align-items:center; padding:0.75rem 0; border-bottom:1px solid var(--border); }
+  .stat-row:last-child { border-bottom:none; }
+  .stat-lbl { font-size:0.8rem; color:var(--mid); }
+  .stat-num { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:600; color:var(--ink); }
+  .stat-num.blue { color:var(--navy); }
+
+  /* ── LAYOUT ── */
+  .sw { max-width:1100px; margin:0 auto; padding:5.5rem 2rem; }
+  .sh { display:flex; align-items:center; gap:1.2rem; margin-bottom:2.8rem; }
+  .sh-num { font-size:0.63rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted); flex-shrink:0; }
+  h2.st { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,2.8vw,2.5rem); font-weight:400; color:var(--ink); flex:1; }
+  .sh-line { flex:1; height:1px; background:var(--border); }
+  .section-alt { background:var(--white); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .full-border-top { border-top:1px solid var(--border); }
+
+  /* ── ABOUT ── */
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4.5rem; }
+  .about-text p { font-size:0.93rem; color:var(--mid); line-height:1.92; margin-bottom:1rem; }
+  .about-text p strong { color:var(--ink); font-weight:600; }
+  .edu-card {
+    background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.3rem 1.5rem; display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:0.75rem; box-shadow:var(--shadow); transition:box-shadow 0.2s,transform 0.2s;
+  }
+  .edu-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+  .edu-deg { font-size:0.88rem; font-weight:600; margin-bottom:0.2rem; color:var(--ink); }
+  .edu-sch { font-size:0.78rem; color:var(--mid); }
+  .edu-right { text-align:right; flex-shrink:0; }
+  .edu-gpa { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:600; color:var(--navy); }
+  .edu-yr { font-size:0.7rem; color:var(--muted); display:block; margin-top:0.15rem; }
+
+  /* ── EXPERIENCE ── */
+  .exp-card {
+    background:var(--bg); border:1px solid var(--border); border-radius:var(--radius);
+    padding:2rem; margin-bottom:1rem;
+    display:grid; grid-template-columns:210px 1fr; gap:2.5rem;
+    transition:box-shadow 0.2s, transform 0.2s;
+  }
+  .exp-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+  .exp-date { font-size:0.73rem; color:var(--muted); margin-bottom:0.4rem; }
+  .exp-co { font-family:'Playfair Display',serif; font-size:1.12rem; color:var(--ink); margin-bottom:0.5rem; }
+  .exp-badge {
+    display:inline-block; font-size:0.62rem; font-weight:700; letter-spacing:0.09em;
+    text-transform:uppercase; border-radius:100px; padding:0.22rem 0.7rem;
+    background:var(--navy); color:#fff;
+  }
+  .exp-title { font-size:0.98rem; font-weight:600; margin-bottom:0.85rem; color:var(--ink); }
+  .exp-bullets { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+  .exp-bullets li { font-size:0.85rem; color:var(--mid); line-height:1.75; padding-left:1.1rem; position:relative; }
+  .exp-bullets li::before { content:'·'; position:absolute; left:0; color:var(--navy-mid); font-size:1.2rem; line-height:1.35; }
+  .pm-badge {
+    display:inline-flex; align-items:center; gap:0.4rem;
+    background:var(--warm); color:#fff;
+    border-radius:100px; padding:0.24rem 0.8rem;
+    font-size:0.62rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    margin-top:0.9rem;
+  }
+
+  /* ── PROJECTS ── */
+  .proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .proj-card {
+    background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.8rem; display:flex; flex-direction:column; gap:0.85rem;
+    box-shadow:var(--shadow); transition:box-shadow 0.25s,transform 0.25s;
+  }
+  .proj-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-3px); }
+  .proj-card.wide { grid-column:span 2; }
+  .proj-tags { display:flex; flex-wrap:wrap; gap:0.35rem; }
+  .ptag {
+    font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    padding:0.22rem 0.65rem; border-radius:100px; border:none;
+  }
+  .ptag.navy { background:var(--navy); color:#fff; }
+  .ptag.warm { background:var(--warm); color:#fff; }
+  .ptag.sage { background:var(--sage); color:#fff; }
+  .ptag.gold { background:var(--gold); color:#fff; }
+  .ptag.light { background:var(--navy-light); color:var(--navy); }
+  .ptag.pale { background:var(--bg); color:var(--mid); border:1px solid var(--border); }
+
+  .proj-title { font-family:'Playfair Display',serif; font-size:1.22rem; font-weight:400; color:var(--ink); line-height:1.3; }
+  .proj-period { font-size:0.72rem; color:var(--muted); margin-top:-0.3rem; }
+  .proj-desc { font-size:0.84rem; color:var(--mid); line-height:1.82; flex:1; }
+
+  .proj-bullets-toggle {
+    background:none; border:none; cursor:pointer;
+    font-size:0.75rem; font-weight:600; color:var(--navy-mid);
+    padding:0; display:flex; align-items:center; gap:0.4rem;
+    margin-top:0.3rem; font-family:'Plus Jakarta Sans',sans-serif;
+    transition:color 0.2s;
+  }
+  .proj-bullets-toggle:hover { color:var(--navy); }
+  .proj-bullets-toggle .arrow { display:inline-block; transition:transform 0.25s; font-size:0.6rem; }
+  .proj-bullets-toggle.open .arrow { transform:rotate(90deg); }
+  .proj-bullets { list-style:none; display:none; flex-direction:column; gap:0.45rem; margin-top:0.6rem; padding-top:0.6rem; border-top:1px solid var(--border); }
+  .proj-bullets.open { display:flex; }
+  .proj-bullets li { font-size:0.8rem; color:var(--mid); line-height:1.75; padding-left:1.1rem; position:relative; }
+  .proj-bullets li::before { content:'·'; position:absolute; left:0; color:var(--navy-mid); font-size:1.1rem; line-height:1.4; }
+
+  .deliv-label { font-size:0.62rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem; }
+  .deliv-list { list-style:none; display:flex; flex-direction:column; gap:0.28rem; }
+  .deliv-list li { font-size:0.78rem; color:var(--mid); padding-left:1rem; position:relative; line-height:1.5; }
+  .deliv-list li::before { content:'↳'; position:absolute; left:0; color:var(--navy-mid); font-size:0.68rem; }
+  .proj-footer { padding-top:0.85rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem; }
+  .tc { font-size:0.65rem; color:var(--muted); }
+  .tc+.tc::before { content:' · '; }
+  .proj-note { font-size:0.67rem; color:var(--muted); font-style:italic; }
+
+  /* ── SKILLS ── */
+  .skills-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+  .skill-card {
+    background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.6rem; box-shadow:var(--shadow);
+  }
+  .skill-card-title {
+    font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--navy); margin-bottom:1rem; padding-bottom:0.8rem;
+    border-bottom:2px solid var(--navy-light);
+  }
+  .skill-card ul { list-style:none; display:flex; flex-direction:column; gap:0.52rem; }
+  .skill-card li { font-size:0.83rem; color:var(--mid); line-height:1.5; }
+
+  /* ── CONTACT ── */
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+  .contact-headline { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3.2vw,3rem); font-weight:400; line-height:1.18; margin-bottom:1.2rem; color:var(--ink); }
+  .contact-headline em { font-style:italic; color:var(--navy-mid); }
+  .contact-sub { font-size:0.9rem; color:var(--mid); line-height:1.88; margin-bottom:1.8rem; }
+  .contact-link {
+    display:flex; align-items:center; gap:1.2rem;
+    background:var(--white); border:1.5px solid var(--border); border-radius:var(--radius-sm);
+    padding:1.1rem 1.3rem; text-decoration:none; color:var(--ink);
+    margin-bottom:0.65rem; box-shadow:var(--shadow);
+    transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
+  }
+  .contact-link:hover { border-color:var(--navy); box-shadow:var(--shadow-hover); transform:translateX(4px); }
+  .link-ico {
+    width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+    background:var(--navy); border-radius:8px;
+    font-size:0.85rem; color:#fff; flex-shrink:0;
+  }
+  .link-type { font-size:0.62rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:0.15rem; }
+  .link-val { font-size:0.86rem; color:var(--ink); font-weight:400; }
+
+  /* ── FOOTER ── */
+  footer { padding:1.8rem 2rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); }
+  footer p { font-size:0.73rem; color:var(--muted); }
+
+  /* ── ANIM ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+  .rev { opacity:0; transform:translateY(18px); transition:opacity 0.65s,transform 0.65s; }
+  .rev.on { opacity:1; transform:none; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:860px){
+    nav { top:0.5rem; width:calc(100% - 2rem); padding:0.8rem 1.2rem; }
+    .nav-links { display:none; }
+    .hero-wrap,.sw { padding-left:1.2rem; padding-right:1.2rem; }
+    .hero-wrap { grid-template-columns:1fr; gap:2rem; padding-top:100px; }
+    .about-grid,.contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .proj-grid { grid-template-columns:1fr; }
+    .proj-card.wide { grid-column:span 1; }
+    .skills-grid { grid-template-columns:1fr 1fr; gap:0.75rem; }
+    .exp-card { grid-template-columns:1fr; gap:1rem; }
+    footer { flex-direction:column; gap:0.4rem; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="nav-logo">Vivian Nguyen</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#exp">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="top">
+<div class="hero-wrap">
+  <div>
+    <div class="hero-pill">Program Manager · AI & NeuroTech</div>
+    <h1>Vivian<br><em>Nguyen</em></h1>
+    <p class="hero-sub">
+      Product Development Engineer supporting <strong>neuromodulation and BCI medical devices</strong> —
+      with hands-on program management experience, AI/ML expertise, and a 4.0 GPA across three STEM degrees.
+      Targeting roles in <strong>Product or Program Management, ML/AI, and NeuroTech</strong>.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-dark">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div>
+    <div class="hero-card">
+      <div class="hero-card-title">At a Glance</div>
+      <div class="stat-row"><span class="stat-lbl">GPA — All Degrees</span><span class="stat-num blue">4.0</span></div>
+      <div class="stat-row"><span class="stat-lbl">Degrees Earned</span><span class="stat-num">3 × STEM</span></div>
+      <div class="stat-row"><span class="stat-lbl">Regulatory</span><span class="stat-num">FDA II/III</span></div>
+      <div class="stat-row"><span class="stat-lbl">Domains</span><span class="stat-num">AI · BCI · PM</span></div>
+      <div class="stat-row"><span class="stat-lbl">Location</span><span class="stat-num">Texas, USA</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="full-border-top">
+<div class="sw">
+  <div class="sh rev"><span class="sh-num">01</span><h2 class="st">Background</h2><div class="sh-line"></div></div>
+  <div class="about-grid">
+    <div class="about-text rev">
+      <p>I'm a <strong>Product Development Engineer</strong> at Resolution Medical, supporting neuromodulation and BCI medical device programs across the full product lifecycle — from requirements and design verification through system validation and FDA readiness.</p>
+      <p>Beyond engineering, I actively support <strong>program and product management</strong>: planning and tracking timelines, milestones, and critical paths; managing cross-functional communications; facilitating status meetings; maintaining audit-ready documentation; and conducting project closeouts with handoffs to Sales and Support.</p>
+      <p>My blend of biomedical engineering, AI/ML depth, and real program governance experience positions me at the intersection of <strong>product strategy, machine learning, and neurotechnology</strong>.</p>
+    </div>
+    <div class="rev">
+      <div class="edu-card"><div><div class="edu-deg">M.S. Computer Science</div><div class="edu-sch">Georgia Institute of Technology</div></div><div class="edu-right"><div class="edu-gpa">4.0</div><span class="edu-yr">May 2027</span></div></div>
+      <div class="edu-card"><div><div class="edu-deg">B.S. Computer Science</div><div class="edu-sch">Southern New Hampshire University</div></div><div class="edu-right"><div class="edu-gpa">4.0</div><span class="edu-yr">Dec 2024</span></div></div>
+      <div class="edu-card"><div><div class="edu-deg">B.S. Biomedical Engineering</div><div class="edu-sch">University of Texas at Arlington</div></div><div class="edu-right"><div class="edu-gpa">4.0</div><span class="edu-yr">May 2023</span></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="exp">
+<div class="section-alt">
+<div class="sw">
+  <div class="sh rev"><span class="sh-num">02</span><h2 class="st">Experience</h2><div class="sh-line"></div></div>
+
+  <div class="exp-card rev">
+    <div>
+      <div class="exp-date">Jun 2023 – Present</div>
+      <div class="exp-co">Resolution Medical</div>
+      <span class="exp-badge">Medical Device · BCI</span>
+    </div>
+    <div>
+      <div class="exp-title">Product Development Engineer / Tech Lead</div>
+      <ul class="exp-bullets">
+        <li>Lead cross-functional programs for BCI and neuromodulation systems — coordinating software, electrical, mechanical, and QA teams toward product milestones.</li>
+        <li>Manage FDA Class II/III traceability matrices, design verification dashboards, and system validation readiness for regulatory submissions.</li>
+        <li>Plan and track project timelines, milestones, critical paths, and deliverables using established project management tools.</li>
+        <li>Manage project communications: facilitate status meetings, document discussions, and drive completion of action items.</li>
+        <li>Maintain accurate and complete project documentation, ensuring timely archiving and readiness for reviews and audits.</li>
+        <li>Conduct project closeouts including handoff to Sales and Support; compile lessons learned to support continuous improvement.</li>
+        <li>Identify risks in electromechanical subsystems; implement troubleshooting frameworks to reduce downtime and ensure delivery readiness.</li>
+      </ul>
+      <span class="pm-badge">↑ Program &amp; Product Management Support</span>
+    </div>
+  </div>
+
+  <div class="exp-card rev">
+    <div>
+      <div class="exp-date">Mar 2025 – Jul 2025</div>
+      <div class="exp-co">AI Mastery Bootcamp</div>
+      <span class="exp-badge">AI Program Lead</span>
+    </div>
+    <div>
+      <div class="exp-title">AI Program Lead (Project-Based)</div>
+      <ul class="exp-bullets">
+        <li>Directed end-to-end delivery of an LLM-based medical chatbot and multi-digit recognition system.</li>
+        <li>Oversaw full model lifecycle: training, drift detection, retraining pipelines, and deployment via APIs and containerized infrastructure.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="full-border-top">
+<div class="sw">
+  <div class="sh rev"><span class="sh-num">03</span><h2 class="st">Projects</h2><div class="sh-line"></div></div>
+  <div class="proj-grid">
+
+    <div class="proj-card wide rev">
+      <div class="proj-tags">
+        <span class="ptag navy">NeuroTech · BCI</span>
+        <span class="ptag navy">AI / ML</span>
+        <span class="ptag warm">Product Management</span>
+        <span class="ptag pale">Clinical Research</span>
+      </div>
+      <div class="proj-title">BrainTalk AI</div>
+      <div class="proj-period">2025 – 2026</div>
+      <p class="proj-desc">Clinical-grade BCI research platform integrating EEG signal acquisition, real-time ML classification, and GPT-4o as an adaptive intelligence layer — with full product documentation suite authored from scratch.</p>
+      <button class="proj-bullets-toggle" onclick="toggleBullets(this)"><span class="arrow">▶</span> View key achievements</button>
+      <ul class="proj-bullets">
+        <li>Designed and led end-to-end development of a clinical-grade BCI prototype integrating EEG signal acquisition, real-time ML, and GPT-4o as an adaptive intelligence layer.</li>
+        <li>Authored full product documentation suite: MRD, PRD (53 functional requirements), Phase 1 Pilot Plan, and IRB Protocol Template aligned with clinical research standards.</li>
+        <li>Engineered a real-time EEG signal processing pipeline in Python featuring Butterworth bandpass filtering, Welch PSD band power extraction, and CSP+LDA motor imagery classification — achieving sub-3ms mean inference latency (hard requirement: 100ms).</li>
+        <li>Built a GPT-4o intelligence engine with three operational modes: adaptive patient coaching, signal annotation, and automated SOAP note generation with a clinician approval gate.</li>
+        <li>Implemented clinical safety features: PII sanitisation (FR-25), AES-256 audit logging (FR-26), fatigue index monitoring with Apple Watch alert dispatch, and a mandatory clinician review gate before any AI-generated clinical output is saved.</li>
+        <li>Validated full system integration (Group A → Group B pipeline) across 73 trials with zero crashes, 0% artifact rejection on clean signal, and all latency targets met.</li>
+        <li>Designed and built an interactive clinical demo GUI with dual-view interface (clinician dashboard and patient-facing screen), deployed as a zero-dependency single-file web app on GitHub Pages.</li>
+      </ul>
+      <div style="margin-top:0.6rem;">
+        <div class="deliv-label">PM Documentation — Available Upon Request</div>
+        <ul class="deliv-list">
+          <li>Market Requirements Document (MRD)</li>
+          <li>Product Requirements Document (PRD) — 53 functional requirements</li>
+          <li>Interface Requirements Specification (IRS)</li>
+          <li>Phase 1 Pilot Plan &amp; IRB Protocol Template</li>
+          <li>ML Pipeline Architecture &amp; Hardware Integration Plan</li>
+        </ul>
+      </div>
+      <div class="proj-footer">
+        <div><span class="tc">Python</span><span class="tc">EEG / CSP+LDA</span><span class="tc">GPT-4o</span><span class="tc">React</span><span class="tc">AES-256</span><span class="tc">GitHub Pages</span></div>
+        <span class="proj-note">Vibe-coded · Full clinical PM spec</span>
+      </div>
+    </div>
+
+    <div class="proj-card rev">
+      <div class="proj-tags"><span class="ptag warm">PM Tool</span><span class="ptag sage">Process Improvement</span></div>
+      <div class="proj-title">CRAID Risk Management System</div>
+      <div class="proj-period">2025</div>
+      <p class="proj-desc">End-to-end CRAID system integrating Microsoft Teams, Excel, Power Automate, and Smartsheet — closing the access gap where engineers had no structured way to log risks into the PM register.</p>
+      <button class="proj-bullets-toggle" onclick="toggleBullets(this)"><span class="arrow">▶</span> View key achievements</button>
+      <ul class="proj-bullets">
+        <li>Designed a zero-friction submission workflow reducing engineer input time to under 45 seconds via a 3-field Microsoft Teams form.</li>
+        <li>Built a macro-enabled Excel workbook (.xlsm) with VBA automation, live dashboard, engineer submission form, and PM review layer — connected via VLOOKUP and COUNTIFS across 5 integrated sheets.</li>
+        <li>Developed a Python sync script using the Smartsheet REST API to automate row creation and status updates from Excel to Smartsheet.</li>
+        <li>Architected a Power Automate flow mapping Microsoft Forms responses to Excel on OneDrive with automatic PM notification via Teams.</li>
+        <li>Defined role-based access controls maintaining CRAID log integrity and audit trail; designed automated weekly summary emails and due-date reminders via Smartsheet workflows.</li>
+      </ul>
+      <div class="proj-footer">
+        <div><span class="tc">Excel VBA</span><span class="tc">Python</span><span class="tc">Smartsheet API</span><span class="tc">Power Automate</span></div>
+        <span class="proj-note">Internal ops · Vibe-coded</span>
+      </div>
+    </div>
+
+    <div class="proj-card rev">
+      <div class="proj-tags"><span class="ptag warm">PM Tool</span><span class="ptag navy">AI</span></div>
+      <div class="proj-title">ResumeFit — AI Resume Tailor</div>
+      <p class="proj-desc">Full-stack AI web app that tailors resumes to job descriptions using the Claude API. 4-step React interface with real-time rewriting, match scoring, and one-page PDF export. Deployed on Vercel.</p>
+      <button class="proj-bullets-toggle" onclick="toggleBullets(this)"><span class="arrow">▶</span> View key achievements</button>
+      <ul class="proj-bullets">
+        <li>Built a multi-step form UI collecting contact info, work experience, skills, and education — integrating Claude to rewrite and keyword-optimize resumes against job descriptions with a match score.</li>
+        <li>Implemented one-page PDF export using the browser iframe print API.</li>
+        <li>Deployed to Vercel with CI/CD via GitHub and secure API key management via environment variables.</li>
+      </ul>
+      <div class="proj-footer">
+        <div><span class="tc">React</span><span class="tc">Claude API</span><span class="tc">JavaScript</span><span class="tc">Vercel</span></div>
+        <span class="proj-note">Vibe-coded</span>
+      </div>
+    </div>
+
+    <div class="proj-card rev">
+      <div class="proj-tags"><span class="ptag navy">NeuroTech</span><span class="ptag navy">ML / BCI</span></div>
+      <div class="proj-title">ECoG Signal Decoder</div>
+      <p class="proj-desc">Scalable ML pipeline decoding ECoG brain signals into GPT-2 language embeddings for speech-assistive BCI. Applied knowledge distillation and electrode ablation to improve inference efficiency.</p>
+      <div class="proj-footer">
+        <div><span class="tc">ECoG · BCI</span><span class="tc">GPT-2</span><span class="tc">PyTorch</span><span class="tc">Knowledge Distillation</span></div>
+        <span class="proj-note">Side research project</span>
+      </div>
+    </div>
+
+    <div class="proj-card rev">
+      <div class="proj-tags"><span class="ptag pale">Full-Stack</span><span class="ptag light">Cloud</span></div>
+      <div class="proj-title">Travlr Getaways</div>
+      <p class="proj-desc">Full-stack MEAN application on AWS (Lambda, S3, DynamoDB) with Docker containerization for consistent dev-test-prod environments. Managed from architecture through deployment.</p>
+      <div class="proj-footer">
+        <div><span class="tc">MEAN Stack</span><span class="tc">AWS</span><span class="tc">Docker</span><span class="tc">DynamoDB</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card rev">
+      <div class="proj-tags"><span class="ptag navy">ML / CV</span><span class="ptag pale">Deep Learning</span></div>
+      <div class="proj-title">Multi-Digit Recognition</div>
+      <p class="proj-desc">Hybrid CV + DL architecture combining MSER with CNNs — 94.25% accuracy. Competitive analysis of Custom CNN vs. VGG16 to optimize the latency-precision tradeoff.</p>
+      <div class="proj-footer">
+        <div><span class="tc">CNN</span><span class="tc">MSER</span><span class="tc">VGG16</span><span class="tc">94.25% Accuracy</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills">
+<div class="section-alt">
+<div class="sw">
+  <div class="sh rev"><span class="sh-num">04</span><h2 class="st">Expertise</h2><div class="sh-line"></div></div>
+  <div class="skills-grid">
+    <div class="skill-card rev">
+      <div class="skill-card-title">Program Management</div>
+      <ul>
+        <li>Program &amp; product management</li>
+        <li>Timeline &amp; milestone tracking</li>
+        <li>Critical path planning</li>
+        <li>Risk identification &amp; mitigation</li>
+        <li>Project closeout &amp; handoffs</li>
+        <li>Lessons learned documentation</li>
+        <li>Agile / Scrum · SDLC</li>
+        <li>Smartsheet</li>
+      </ul>
+    </div>
+    <div class="skill-card rev">
+      <div class="skill-card-title">AI / ML</div>
+      <ul>
+        <li>Large Language Models (GPT-4o)</li>
+        <li>Python · TensorFlow · PyTorch</li>
+        <li>EEG/ECoG signal processing</li>
+        <li>CSP+LDA · Knowledge distillation</li>
+        <li>NLP pipelines</li>
+        <li>Model deployment — AWS · Docker</li>
+        <li>Computer Vision (CNN, MSER)</li>
+        <li>SQL · data processing</li>
+      </ul>
+    </div>
+    <div class="skill-card rev">
+      <div class="skill-card-title">Product &amp; Systems</div>
+      <ul>
+        <li>FDA Class II/III traceability</li>
+        <li>PRD · MRD · IRS · IRB authoring</li>
+        <li>Design verification &amp; validation</li>
+        <li>Phase-Gate governance</li>
+        <li>Clinical safety requirements</li>
+        <li>Full-stack web (MERN/MEAN)</li>
+        <li>AI system integration</li>
+      </ul>
+    </div>
+    <div class="skill-card rev">
+      <div class="skill-card-title">Stakeholder &amp; Delivery</div>
+      <ul>
+        <li>Cross-functional leadership</li>
+        <li>Status reporting &amp; dashboards</li>
+        <li>Meeting facilitation</li>
+        <li>Technical communication</li>
+        <li>Audit-ready documentation</li>
+        <li>Resource &amp; budget planning</li>
+        <li>Day-0 product readiness</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="full-border-top">
+<div class="sw">
+  <div class="sh rev"><span class="sh-num">05</span><h2 class="st">Let's Connect</h2><div class="sh-line"></div></div>
+  <div class="contact-grid">
+    <div class="rev">
+      <h2 class="contact-headline">Open to <em>Product &amp;<br>Program Management,</em><br>ML/AI &amp; NeuroTech</h2>
+      <p class="contact-sub">Seeking product management, program management, ML engineering, or ML internship opportunities in AI and neurotechnology. I bring technical depth, PM rigor, and a genuine passion for products at the intersection of neuroscience and intelligent systems.</p>
+      <a href="mailto:viviannguyen726@gmail.com" class="btn btn-dark">Send a Message</a>
+    </div>
+    <div class="rev">
+      <a href="mailto:viviannguyen726@gmail.com" class="contact-link">
+        <div class="link-ico">✉</div>
+        <div><span class="link-type">Email</span><span class="link-val">viviannguyen726@gmail.com</span></div>
+      </a>
+      <a href="tel:6822403366" class="contact-link">
+        <div class="link-ico">☏</div>
+        <div><span class="link-type">Phone</span><span class="link-val">682-240-3366</span></div>
+      </a>
+      <a href="https://www.linkedin.com/in/viviannguyen726" target="_blank" class="contact-link">
+        <div class="link-ico">in</div>
+        <div><span class="link-type">LinkedIn</span><span class="link-val">linkedin.com/in/viviannguyen726</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <p>© 2025 Vivian Nguyen — Program Manager · AI &amp; NeuroTech</p>
+  <p>Three degrees. Three 4.0s. One mission.</p>
+</footer>
+
+<script>
+function toggleBullets(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+const els = document.querySelectorAll('.rev');
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if (e.isIntersecting) { setTimeout(()=>e.target.classList.add('on'), i*60); io.unobserve(e.target); }
+  });
+}, { threshold:0.07 });
+els.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
